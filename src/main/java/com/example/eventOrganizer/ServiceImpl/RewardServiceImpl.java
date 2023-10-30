@@ -65,8 +65,8 @@ public class RewardServiceImpl implements RewardService {
             } else {
                 System.out.println("Successfully Pass Record To leader_board");
             }
-            
-        }else{
+
+        } else {
             System.out.println("this mounth we can not excute the query. Sorry inconvience!!");
         }
     }

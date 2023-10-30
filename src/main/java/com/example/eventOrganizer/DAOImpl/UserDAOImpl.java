@@ -84,11 +84,9 @@ public class UserDAOImpl implements UserDAO {
                 return null;
             }
 
-
-            userObject.getJoiningEventUser().forEach(ele->{
+            userObject.getJoiningEventUser().forEach(ele -> {
                 logger.error("getJoiningEventUser ID: " + ele);
             });
-
 
             userObject
                     .setUserID(userEntity.getUserID())
@@ -286,6 +284,12 @@ public class UserDAOImpl implements UserDAO {
         em.merge(event);
     }
 
+    @Transactional
+    public void decrementAssignUserToEvents(EventEntity event) {
+        event.setNumberOfUserRegister(event.getNumberOfUserRegister() - 1);
+        em.merge(event);
+    }
+
     @Override
     public UserEntity findByUsername(String username) {
         logger.info("userID :: GET :: " + username);
@@ -304,6 +308,22 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-
-
+    @Override
+    @Transactional
+    public void addPointRewardToUser(Long userID) {
+        logger.info("userID :: GET :: " + userID);
+        try {
+            UserEntity userEntity = em.find(UserEntity.class, userID);
+            userEntity.setTotalRewardPoint(userEntity.getTotalRewardPoint() + 100);
+            em.merge(userEntity);
+        } catch (NoResultException nre) {
+            logger.info("NoResultException in UserDAOImpl :: addPointRewardToUser() ::", nre);
+        } catch (NullPointerException npe) {
+            logger.error("NullPointerException in UserDAOImpl :: addPointRewardToUser() ::", npe);
+            throw npe;
+        } catch (Exception e) {
+            logger.error("Exception in UserDAOImpl :: addPointRewardToUser() ::", e);
+            throw new RuntimeException("An error occurred while fetching User", e);
+        }
+    }
 }

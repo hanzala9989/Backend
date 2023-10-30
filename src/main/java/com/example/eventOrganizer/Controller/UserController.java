@@ -30,9 +30,9 @@ import com.example.eventOrganizer.ServiceImpl.EmailServiceImpl;
 import com.example.eventOrganizer.Uitility.ResponseHandler;
 
 @RestController
-@CrossOrigin("*")
 @ResponseBody
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
     private static Logger logger = LogManager.getLogger(UserController.class);
 
@@ -97,7 +97,7 @@ public class UserController {
                     String subject = "Welcome to XYZ! Your application is ready";
                     // emailService.sendEmail(to, subject, body.toString());
                 }
-                logger.info("UserController :: END :: AddUser() ::", userObject);
+                logger.info("UserController :: END :: AddUser() ::" + userObject);
                 return ResponseEntity.ok(new ResponseHandler("200", "User Added Successfully"));
             }
             return null;
@@ -248,23 +248,24 @@ public class UserController {
         }
     }
 
+    @CrossOrigin("*")
     @PutMapping("/processUserFromEvent")
     public ResponseEntity<ResponseHandler> processUserFromEvent(
             @RequestBody UserAssignedEvent userAssignedEventEntity) {
-        logger.info("UserController :: START :: EditUser() ::");
+        logger.info("UserController :: START :: processUserFromEvent() ::");
         try {
             if (userAssignedEventEntity != null) {
                 userAssignedEventService.processUserFromEventService(userAssignedEventEntity);
-                return ResponseEntity.ok(new ResponseHandler("200", "User Updated Successfully"));
+                return ResponseEntity.ok(new ResponseHandler("200", "User Maker As Attended"));
+            } else {
+                throw new NullPointerException("userEntity is NULL Exception");
+
             }
-            throw new NullPointerException("userEntity is NULL Exception");
         } catch (Exception ex) {
-            logger.error("Exception in UserController :: FAILED :: EditUser() :: Internal Server Error ");
+            logger.error("Exception in UserController :: FAILED :: processUserFromEvent() :: Internal Server Error ");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseHandler("500", "Error Update User :: " + ex.getMessage()));
         }
     }
-
-
 
 }

@@ -28,7 +28,7 @@ public class ContactEntity {
     // @NotEmpty(message = "Subject is Required !!")
     private String subject;
 
-    @Column(name = "message")
+    @Column(name = "message", columnDefinition = "TEXT")
     // @NotEmpty(message = "Message is Required !!")
     private String message;
 

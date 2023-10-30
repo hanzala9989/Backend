@@ -99,10 +99,10 @@ public class RewardController {
     }
 
     @DeleteMapping("/deleteRewardByID")
-    public ResponseHandler deleteRewardByID(@RequestParam Long RewardID) {
+    public ResponseHandler deleteRewardByID(@RequestParam Long rewardID) {
         logger.info("RewardController :: START :: DeleteRewardByID() ::");
         try {
-            boolean reward = rewardService.deleteRewardService(RewardID);
+            boolean reward = rewardService.deleteRewardService(rewardID);
 
             if (reward) {
                 logger.info("RewardController:: PROCESS :: DeleteRewardByID() :: Reward Deleted SuccessFully");

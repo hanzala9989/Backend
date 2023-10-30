@@ -1,4 +1,10 @@
 -------------------------------------------------------------------------------
 Test set: com.example.eventOrganizer.WaterdrinkingApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 17.411 s - in com.example.eventOrganizer.WaterdrinkingApplicationTests
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 28.123 s <<< FAILURE! - in com.example.eventOrganizer.WaterdrinkingApplicationTests
+contextLoads  Time elapsed: 0.002 s  <<< ERROR!
+java.lang.IllegalStateException: Failed to load ApplicationContext
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'corsWebFilter' defined in com.example.eventOrganizer.EventOrganizerApplication: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.cors.reactive.CorsWebFilter]: Factory method 'corsWebFilter' threw exception; nested exception is java.lang.ClassCastException: class org.springframework.web.cors.UrlBasedCorsConfigurationSource cannot be cast to class org.springframework.web.cors.reactive.CorsConfigurationSource (org.springframework.web.cors.UrlBasedCorsConfigurationSource and org.springframework.web.cors.reactive.CorsConfigurationSource are in unnamed module of loader 'app')
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.web.cors.reactive.CorsWebFilter]: Factory method 'corsWebFilter' threw exception; nested exception is java.lang.ClassCastException: class org.springframework.web.cors.UrlBasedCorsConfigurationSource cannot be cast to class org.springframework.web.cors.reactive.CorsConfigurationSource (org.springframework.web.cors.UrlBasedCorsConfigurationSource and org.springframework.web.cors.reactive.CorsConfigurationSource are in unnamed module of loader 'app')
+Caused by: java.lang.ClassCastException: class org.springframework.web.cors.UrlBasedCorsConfigurationSource cannot be cast to class org.springframework.web.cors.reactive.CorsConfigurationSource (org.springframework.web.cors.UrlBasedCorsConfigurationSource and org.springframework.web.cors.reactive.CorsConfigurationSource are in unnamed module of loader 'app')
+

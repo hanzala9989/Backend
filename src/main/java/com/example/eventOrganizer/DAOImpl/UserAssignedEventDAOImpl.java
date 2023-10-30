@@ -15,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.example.eventOrganizer.DAO.UserAssignedEventDAO;
-import com.example.eventOrganizer.Entity.EventEntity;
 import com.example.eventOrganizer.Entity.UserAssignedEvent;
 import com.example.eventOrganizer.Entity.UserEntity;
 
@@ -119,23 +118,25 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
     }
 
     public UserAssignedEvent getUserFromEventObject(Long userID, Long eventID) {
-        logger.info("UserAssignedEventDAOImpl :: GET :: :: getUserFromEvent() :: userID :: " + userID + ":: eventID ::"
+        logger.info("UserAssignedEventDAOImpl :: GET :: :: getUserFromEventObject() :: userID :: " + userID + ":: eventID ::"
                 + eventID);
         try {
             String queryString = "SELECT * FROM user_event WHERE user_id = " + userID + " AND event_id = " + eventID;
             em.createNativeQuery(queryString, UserAssignedEvent.class).getSingleResult();
             logger.info("users :: GETALL :: {}", queryString);
-            return (UserAssignedEvent) em.createNativeQuery(queryString, UserAssignedEvent.class).getSingleResult();
+            UserAssignedEvent userEvent = (UserAssignedEvent) em.createNativeQuery(queryString, UserAssignedEvent.class)
+                    .getSingleResult();
+            return userEvent;
 
         } catch (NoResultException nre) {
-            logger.error("NoResultException in UserAssignedEventDAOImpl :: getUserFromEvent() ::");
+            logger.error("NoResultException in UserAssignedEventDAOImpl :: getUserFromEventObject() ::");
             return null;
         } catch (NullPointerException npe) {
-            logger.error("NullPointerException in UserAssignedEventDAOImpl :: getUserFromEvent() ::");
+            logger.error("NullPointerException in UserAssignedEventDAOImpl :: getUserFromEventObject() ::");
             return null;
 
         } catch (Exception e) {
-            logger.error("Exception in UserAssignedEventDAOImpl :: getUserFromEvent() ::");
+            logger.error("Exception in UserAssignedEventDAOImpl :: getUserFromEventObject() ::");
             return null;
         }
 
@@ -143,8 +144,7 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
 
     @Override
     @Transactional
-    public UserAssignedEvent 
-    processUserFromEvent(UserAssignedEvent userAssignedEventEntity) {
+    public UserAssignedEvent processUserFromEvent(UserAssignedEvent userAssignedEventEntity) {
         try {
             logger.info("processUserFrom() :: EDIT :: ", userAssignedEventEntity);
             // Check if EventEntity is null
@@ -152,16 +152,25 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
                 logger.error("EventEntity is null.");
                 return null;
             }
-            UserAssignedEvent userAssignedEventObject = getUserFromEventObject(userAssignedEventEntity.getUserID(),
-                    userAssignedEventEntity.getEventID());
+            Long userID = userAssignedEventEntity.getUserID();
+            Long eventID = userAssignedEventEntity.getEventID();
+            UserAssignedEvent userAssignedEventObject = getUserFromEventObject(userID, eventID);
 
-            userAssignedEventObject.setUserID(userAssignedEventEntity.getUserID());
-            userAssignedEventObject.setEventID(userAssignedEventEntity.getEventID());
-            userAssignedEventObject.setAttendend(userAssignedEventEntity.getAttendend());
-            userAssignedEventObject.setStatus(userAssignedEventEntity.isStatus());
+            StringBuilder queryBuilder = new StringBuilder();
+
+            queryBuilder.append("UPDATE user_event SET ");
+            queryBuilder.append("user_attendend =" + userAssignedEventEntity.getAttendend() + ", ");
+            queryBuilder.append("status =" + 1 + ", ");
+            queryBuilder.append("user_last_update_timestamp = NOW() ");
+            queryBuilder.append("WHERE user_id = ");
+            queryBuilder.append(userID);
+            queryBuilder.append(" AND event_id = ");
+            queryBuilder.append(eventID);
+            String sqlQuery = queryBuilder.toString();
+            System.out.println(sqlQuery);
 
             try {
-                em.merge(userAssignedEventObject);
+                em.createNativeQuery(sqlQuery).executeUpdate();
                 logger.info("processUserFromEvent updated successfully.");
             } catch (Exception e) {
                 logger.error("processUserFromEvent in UserAssignedEventDAOImpl  :: EDIT :: EventObject :: ", e);

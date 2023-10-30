@@ -62,6 +62,7 @@ public class EventDAOImpl implements EventDAO {
                 logger.error("EventEntity is null.");
                 return null;
             }
+            
             EventEntity eventObject = em.find(EventEntity.class, eventEntity.getEventID());
 
             eventObject.setEventName(eventEntity.getEventName());

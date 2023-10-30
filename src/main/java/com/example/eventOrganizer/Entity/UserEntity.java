@@ -48,7 +48,8 @@ public class UserEntity {
     private String accountStatus;
     
     @Column(name = "total_reward_point")
-    private String totalRewardPoint;
+    private int totalRewardPoint;
+
 
     @Column(name = "user_last_Update_Timestamp")
     LocalDateTime lastUpdateTimestamp = LocalDateTime.now();
@@ -168,15 +169,14 @@ public class UserEntity {
         this.joiningEventUser = joiningEventUser;
         return this;
     }
-
-    @Override
-    public String toString() {
-        return "UserEntity [userID=" + userID + ", username=" + username + ", userEmail=" + userEmail
-                + ", userPassword=" + userPassword + ", dOB=" + dOB + ", gender=" + gender + ", phoneNumber="
-                + phoneNumber + ", roleName=" + roleName + ", accountStatus=" + accountStatus + ", joiningEventUser="
-                + joiningEventUser + "]";
+    public int getTotalRewardPoint() {
+        return totalRewardPoint;
     }
 
+    public void setTotalRewardPoint(int totalRewardPoint) {
+        this.totalRewardPoint = totalRewardPoint;
+    }
+    
     public String getToken() {
         return token;
     }

@@ -27,8 +27,8 @@ public class EventOrganizerApplication {
 		return new ModelMapper();
 	}
 
-	@Bean
-    public CorsFilter corsFilter() {
+    @Bean
+    public CorsFilter corsWebFilter() {
         final CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.applyPermitDefaultValues();
         corsConfig.setAllowedOrigins(Collections.singletonList("*"));

@@ -26,4 +26,6 @@ public interface UserDAO {
     public List<UserEntity> filterUsersByAttributesDAO(UserEntity userEntity);
 
     public String assignUserToEvents(Long userID, Long eventID);
+
+    public void addPointRewardToUser(Long userID);
 }

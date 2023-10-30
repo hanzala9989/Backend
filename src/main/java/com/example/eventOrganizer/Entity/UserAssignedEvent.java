@@ -6,21 +6,21 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
 @Entity
 @Table(name = "user_event")
 public class UserAssignedEvent {
     @Id
     @Column(name = "user_id")
     private Long userID;
-
     @Column(name = "event_id")
     private Long eventID;
 
     @Column(name = "user_attendend")
-    private Boolean  attendend;
+    private Boolean attendend;
 
-    @Column(name = "status")
-    private Boolean  status;
+    @Column(name = "status", columnDefinition = "INT DEFAULT 0")
+    private int status = 0;
 
     @Column(name = "user_last_Update_Timestamp")
     LocalDateTime lastUpdateTimestamp = LocalDateTime.now();
@@ -28,7 +28,7 @@ public class UserAssignedEvent {
     public UserAssignedEvent() {
     }
 
-    public UserAssignedEvent(Long userID, Long eventID, Boolean  attendend, Boolean  status,
+    public UserAssignedEvent(Long userID, Long eventID, Boolean attendend, int status,
             LocalDateTime lastUpdateTimestamp) {
         this.userID = userID;
         this.eventID = eventID;
@@ -45,11 +45,11 @@ public class UserAssignedEvent {
         this.eventID = eventID;
     }
 
-    public void setAttendend(Boolean  attendend) {
+    public void setAttendend(Boolean attendend) {
         this.attendend = attendend;
     }
 
-    public void setStatus(Boolean  status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -61,11 +61,11 @@ public class UserAssignedEvent {
         return eventID;
     }
 
-    public Boolean  getAttendend() {
+    public Boolean getAttendend() {
         return attendend;
     }
 
-    public Boolean  isStatus() {
+    public int isStatus() {
         return status;
     }
 }
