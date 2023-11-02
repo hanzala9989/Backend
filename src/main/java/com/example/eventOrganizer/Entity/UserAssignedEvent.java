@@ -19,8 +19,8 @@ public class UserAssignedEvent {
     @Column(name = "user_attendend")
     private Boolean attendend;
 
-    @Column(name = "status", columnDefinition = "INT DEFAULT 0")
-    private int status = 0;
+    @Column(name = "status", columnDefinition = "Long DEFAULT 0")
+    private Long status;
 
     @Column(name = "user_last_Update_Timestamp")
     LocalDateTime lastUpdateTimestamp = LocalDateTime.now();
@@ -28,7 +28,7 @@ public class UserAssignedEvent {
     public UserAssignedEvent() {
     }
 
-    public UserAssignedEvent(Long userID, Long eventID, Boolean attendend, int status,
+    public UserAssignedEvent(Long userID, Long eventID, Boolean attendend, Long status,
             LocalDateTime lastUpdateTimestamp) {
         this.userID = userID;
         this.eventID = eventID;
@@ -49,7 +49,7 @@ public class UserAssignedEvent {
         this.attendend = attendend;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Long status) {
         this.status = status;
     }
 
@@ -65,7 +65,7 @@ public class UserAssignedEvent {
         return attendend;
     }
 
-    public int isStatus() {
+    public Long isStatus() {
         return status;
     }
 }

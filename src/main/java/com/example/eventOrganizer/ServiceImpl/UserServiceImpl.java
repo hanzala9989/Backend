@@ -55,8 +55,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<UserEntity> loginUserService(LoginModel loginModel) {
         List<UserEntity> listObject = userDAO.getAllUser();
-        logger.info("listObject :: "+ listObject);
-        Optional<UserEntity> foundUser = listObject.stream().filter(user ->  user.getUserEmail().equals(loginModel.getUsername())).findFirst();
+        logger.info("listObject :: " + listObject);
+        Optional<UserEntity> foundUser = listObject.stream()
+                .filter(user -> user.getUserEmail().equals(loginModel.getUsername())
+                        && user.getUserPassword().equals(loginModel.getPassword()))
+                .findFirst();
         return foundUser;
     }
 

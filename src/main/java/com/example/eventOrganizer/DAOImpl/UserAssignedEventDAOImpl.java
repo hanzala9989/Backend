@@ -34,13 +34,13 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
         try {
             builder.append("SELECT * FROM user_event WHERE event_id = " + eventId);
             query = em.createNativeQuery(builder.toString(), UserAssignedEvent.class);
-            logger.info("users :: GETALL :: {}", builder);
+            logger.info("users :: GETALL :: {}", builder.toString());
             return query.getResultList();
         } catch (NullPointerException e) {
             logger.error("NullPointerException in UserAssignedEventDAOImpl :: findUserEventsByEventId()");
             throw e;
         } catch (Exception e) {
-            logger.error("Exception in UserAssignedEventDAOImpl :: findUserEventsByEventId()");
+            logger.error("Exception in UserAssignedEventDAOImpl :: findUserEventsByEventId()",e);
             return Collections.emptyList();
         }
     }

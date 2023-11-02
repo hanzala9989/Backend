@@ -95,7 +95,7 @@ public class UserController {
 
                     String to = userEntity.getUserEmail();
                     String subject = "Welcome to XYZ! Your application is ready";
-                    // emailService.sendEmail(to, subject, body.toString());
+                    emailService.sendEmail(to, subject, body.toString());
                 }
                 logger.info("UserController :: END :: AddUser() ::" + userObject);
                 return ResponseEntity.ok(new ResponseHandler("200", "User Added Successfully"));
