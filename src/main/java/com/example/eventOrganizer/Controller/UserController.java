@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +49,9 @@ public class UserController {
     @Autowired
     AuthenticationController authenticationController;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @PostMapping("/login")
     public ResponseEntity<ResponseHandler> loginUser(@RequestBody LoginModel loginModel) {
         logger.info("UserController :: START :: loginUser() ::");
@@ -76,6 +80,11 @@ public class UserController {
         logger.info("UserController :: START :: AddUser() ::");
         try {
             if (userEntity != null) {
+                String originalPassword = userEntity.getUserPassword();
+                System.out.println("Original Password: " + originalPassword);
+                String encodedPassword = passwordEncoder.encode(originalPassword);
+                System.out.println("Encoded Password: " + encodedPassword);
+                userEntity.setUserPassword(encodedPassword);
                 logger.info("UserController :: PROCESS :: AddUser() ::");
                 UserEntity userObject = userService.addUserService(userEntity);
                 if (userObject != null) {
@@ -93,9 +102,9 @@ public class UserController {
                     body.append(userEntity.getUsername() + "\n");
                     body.append("XYZ");
 
-                    String to = userEntity.getUserEmail();
-                    String subject = "Welcome to XYZ! Your application is ready";
-                    emailService.sendEmail(to, subject, body.toString());
+                    // String to = userEntity.getUserEmail();
+                    // String subject = "Welcome to XYZ! Your application is ready";
+                    // emailService.sendEmail(to, subject, body.toString());
                 }
                 logger.info("UserController :: END :: AddUser() ::" + userObject);
                 return ResponseEntity.ok(new ResponseHandler("200", "User Added Successfully"));

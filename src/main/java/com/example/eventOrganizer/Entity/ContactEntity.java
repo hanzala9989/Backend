@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "contact_master")
@@ -31,17 +32,24 @@ public class ContactEntity {
     @Column(name = "message", columnDefinition = "TEXT")
     // @NotEmpty(message = "Message is Required !!")
     private String message;
+    @Transient
+    private String role;
 
     public ContactEntity() {
     }
 
-    public ContactEntity(Long contactID, Long userID, String email, String subject, String message) {
+
+
+    public ContactEntity(Long contactID, Long userID, String email, String subject, String message, String role) {
         this.contactID = contactID;
         this.userID = userID;
         this.email = email;
         this.subject = subject;
         this.message = message;
+        this.role = role;
     }
+
+
 
     public ContactEntity setContactID(Long contactID) {
         this.contactID = contactID;
@@ -89,10 +97,21 @@ public class ContactEntity {
         return message;
     }
 
-    @Override
-    public String toString() {
-        return "ContactEntity [contactID=" + contactID + ", UserID=" + userID + ", Email=" + email + ", Subject="
-                + subject + ", Message=" + message + "]";
+    public String getRole() {
+        return role;
     }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "ContactEntity [contactID=" + contactID + ", userID=" + userID + ", email=" + email + ", subject="
+                + subject + ", message=" + message + ", role=" + role + "]";
+    }
+
+    
 }

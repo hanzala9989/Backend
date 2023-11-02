@@ -77,7 +77,12 @@ public class ContactDAOImpl implements ContactDAO {
                     .setUserID(contactEntity.getUserID())
                     .setEmail(contactEntity.getEmail())
                     .setSubject(contactEntity.getSubject())
-                    .setMessage(contactEntity.getMessage());
+                    .setMessage(
+                            contactObject.getMessage() +
+                                    "\n" +
+                                    (contactEntity.getRole().equals("Admin") ? "Admin" : "Volunteer") +
+                                    "\n" +
+                                    contactEntity.getMessage());
 
             try {
                 em.merge(contactObject);
@@ -178,7 +183,7 @@ public class ContactDAOImpl implements ContactDAO {
         try {
             builder.append("select * from contact_master;");
             logger.info("getAllContact() :: GETALL :: {}", builder.toString());
-    
+
             query = em.createNativeQuery(builder.toString(), ContactEntity.class);
             List<ContactEntity> resultList = query.getResultList();
             return resultList;
@@ -190,7 +195,6 @@ public class ContactDAOImpl implements ContactDAO {
             return Collections.emptyList();
         }
     }
-    
 
     public List<ContactEntity> filterContactByAttributesDAO(ContactEntity filterParams) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();

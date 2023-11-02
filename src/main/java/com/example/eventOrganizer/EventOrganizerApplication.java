@@ -8,6 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -16,16 +17,17 @@ import org.springframework.web.filter.CorsFilter;
 @SpringBootApplication
 @EntityScan(basePackages = "com.example.eventOrganizer")
 @EnableScheduling
+@Configuration
 public class EventOrganizerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EventOrganizerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EventOrganizerApplication.class, args);
+    }
 
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 
     @Bean
     public CorsFilter corsWebFilter() {
