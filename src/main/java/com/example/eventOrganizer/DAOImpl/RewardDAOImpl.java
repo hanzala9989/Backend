@@ -243,27 +243,28 @@ public class RewardDAOImpl implements RewardDAO {
         Query query = null;
         StringBuilder queryBuilder = new StringBuilder();
         try {
+
             queryBuilder.append("WITH RankedUsers AS (");
-            queryBuilder.append("SELECT u.user_id, u.user_name, u.total_reward_point, ");
-            queryBuilder.append("RANK() OVER (ORDER BY u.total_reward_point DESC) AS calculated_rank ");
-            queryBuilder.append("FROM users u), ");
-
+            queryBuilder.append("    SELECT u.user_id, u.user_name, u.total_reward_point, ");
+            queryBuilder.append("           RANK() OVER (ORDER BY u.total_reward_point DESC) AS calculated_rank ");
+            queryBuilder.append("    FROM users u ");
+            queryBuilder.append("    WHERE u.role_name = 'Volunteer' AND u.total_reward_point <> 0), ");
             queryBuilder.append("RewardsWithRank AS (");
-            queryBuilder.append("SELECT r.rewards_id, r.rewards_name, ");
-            queryBuilder.append("ROW_NUMBER() OVER (ORDER BY r.rewards_id) AS reward_rank ");
-            queryBuilder.append("FROM rewards r) ");
-
+            queryBuilder.append("    SELECT r.rewards_id, r.rewards_name, ");
+            queryBuilder.append("           ROW_NUMBER() OVER (ORDER BY r.rewards_id) AS reward_rank ");
+            queryBuilder.append("    FROM rewards r)");
             queryBuilder.append(
                     "SELECT ru.calculated_rank, ru.user_name, r.rewards_id, r.rewards_name, ru.total_reward_point, ");
-            queryBuilder.append("CASE WHEN '2020-11-24' >= CURRENT_DATE THEN 'Active' ELSE 'Expired' END AS STATUS ");
+            queryBuilder.append(
+                    "       CASE WHEN '2023-11-24' >= CURRENT_DATE THEN 'Active' ELSE 'Expired' END AS STATUS ");
             queryBuilder.append("FROM RankedUsers ru ");
             queryBuilder.append("JOIN RewardsWithRank r ON ru.calculated_rank = r.reward_rank;");
+
 
             String queryString = queryBuilder.toString();
 
             query = em.createNativeQuery(queryString, LeaderBoardEntity.class);
             logger.info("getLeaderBoardDetailDAO() :: GETALL :: Query :: ", queryString); // Use {} to format the log
-            // message
             return query.getResultList();
         } catch (NullPointerException e) {
             // Handle a specific NullPointerException if it occurs
@@ -302,7 +303,8 @@ public class RewardDAOImpl implements RewardDAO {
 
             insert_sql.append(
                     "INSERT INTO leader_board (calculated_rank, user_name, rewards_id, rewards_name, total_reward_point, STATUS) ");
-            insert_sql.append("SELECT calculated_rank, user_name, rewards_id, rewards_name, total_reward_point, STATUS ");
+            insert_sql
+                    .append("SELECT calculated_rank, user_name, rewards_id, rewards_name, total_reward_point, STATUS ");
             insert_sql.append("FROM TempLeaderBoard ");
             insert_sql.append("ON DUPLICATE KEY UPDATE ");
             insert_sql.append("    total_reward_point = VALUES(total_reward_point), STATUS = VALUES(STATUS); ");
