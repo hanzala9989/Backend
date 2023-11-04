@@ -139,7 +139,6 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
             logger.error("Exception in UserAssignedEventDAOImpl :: getUserFromEventObject() ::");
             return null;
         }
-
     }
 
     @Override
@@ -147,7 +146,6 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
     public UserAssignedEvent processUserFromEvent(UserAssignedEvent userAssignedEventEntity) {
         try {
             logger.info("processUserFrom() :: EDIT :: ", userAssignedEventEntity);
-            // Check if EventEntity is null
             if (userAssignedEventEntity == null) {
                 logger.error("EventEntity is null.");
                 return null;
@@ -189,5 +187,7 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
             return null;
         }
     }
+
+    
 
 }

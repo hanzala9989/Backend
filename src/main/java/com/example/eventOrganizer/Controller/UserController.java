@@ -220,9 +220,27 @@ public class UserController {
         }
     }
 
+    @GetMapping("/getAllUserEventsByID")
+    public ResponseEntity<ResponseHandler> getAllUserEventsByID(@RequestParam Long eventID) {
+        logger.info("UserController :: START :: getAllUserEventsByID()");
+
+        try {
+            logger.info("UserController :: PROCESS :: getAllUserEventsByID()");
+            List<UserAssignedEvent> userObject = userAssignedEventService.getAllUserEventsByID(eventID);
+            logger.info("UserController :: END :: getAllUserEventsByID()");
+            return ResponseEntity.ok(new ResponseHandler("200", "Success", List.of(userObject)));
+            // handle the exception hanzala
+        } catch (Exception ex) {
+            logger.error(
+                    "Exception in UserController :: FAILED :: getAllUserEventsByID() ::");
+            return ResponseEntity
+                    .ok(new ResponseHandler("500", "No Event Register", List.of()));
+        }
+    }
+
     @GetMapping("/getAllUserFromEvent")
     public ResponseEntity<ResponseHandler> findUserEventsByEventId(@RequestParam Long eventID) {
-        logger.info("UserController :: START :: assignEventToUser()");
+        logger.info("UserController :: START :: findUserEventsByEventId()");
 
         try {
             logger.info("UserController :: PROCESS :: findUserEventsByEventId()");

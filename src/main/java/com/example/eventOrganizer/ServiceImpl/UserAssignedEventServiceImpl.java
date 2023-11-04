@@ -36,17 +36,23 @@ public class UserAssignedEventServiceImpl implements UserAssignedEventService {
     @Override
     public List<UserEntity> getEventsByID(Long eventID) {
         List<UserAssignedEvent> list = userAssignedEventDAO.findUserEventsByEventId(eventID);
-        System.out.println("list :: "+list);
+        System.out.println("list :: " + list);
         List<Long> userIDs = new ArrayList<Long>();
         if (userIDs.isEmpty()) {
             for (UserAssignedEvent node : list) {
                 userIDs.add(node.getUserID());
             }
-        }else{
+        } else {
             System.out.println("list is empty");
         }
         List<UserEntity> listofUser = userAssignedEventDAO.findUsersByUserIds(userIDs);
         return listofUser;
+    }
+
+    @Override
+    public List<UserAssignedEvent> getAllUserEventsByID(Long eventID) {
+        List<UserAssignedEvent> list = userAssignedEventDAO.findUserEventsByEventId(eventID);
+        return list;
     }
 
     @Override
