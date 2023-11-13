@@ -25,7 +25,7 @@ import com.example.eventOrganizer.Uitility.ResponseHandler;
 
 @RestController
 @ResponseBody
-@RequestMapping("/reward")
+@RequestMapping("/api/reward")
 @CrossOrigin("*")
 public class RewardController {
     private static Logger logger = LogManager.getLogger(RewardController.class);

@@ -25,7 +25,7 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @PostMapping("/authenticate")
+    @PostMapping("/api/authenticate")
     public String createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
         try {
             authenticationManager

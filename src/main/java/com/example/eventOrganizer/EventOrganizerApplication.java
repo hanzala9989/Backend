@@ -15,7 +15,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 @SpringBootApplication
-@EntityScan(basePackages = "com.example.eventOrganizer")
+@EntityScan(basePackages = "com.example")
 @EnableScheduling
 @Configuration
 public class EventOrganizerApplication {

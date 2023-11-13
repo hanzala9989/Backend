@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.eventOrganizer.DAO.UserDAO;
 import com.example.eventOrganizer.Entity.UserEntity;
 import com.example.eventOrganizer.ModelDTO.LoginModel;
+import com.example.eventOrganizer.MongoDBDAO.UserRepository;
 import com.example.eventOrganizer.Service.UserService;
 
 @Service
@@ -21,9 +22,21 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDAO userDAO;
 
+    // @Autowired
+    // private UserRepository userRepository;
+
+    // public List<UserEntity> getAllUsers() {
+    //     return userRepository.findAll();
+    // }
+
+    // public UserEntity saveUser(UserEntity user) {
+    //     return userRepository.save(user);
+    // }
+
     @Override
     @Transactional
     public UserEntity addUserService(UserEntity userEntity) {
+        // userRepository.save(userEntity);
         return userDAO.addUser(userEntity);
     }
 

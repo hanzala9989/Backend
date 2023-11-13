@@ -14,7 +14,7 @@ import com.example.eventOrganizer.ServiceImpl.EmailServiceImpl;
 import com.example.eventOrganizer.Uitility.ResponseHandler;
 
 @RestController
-@RequestMapping("/email")
+@RequestMapping("/api/email")
 public class EmailController {
     private static Logger logger = LogManager.getLogger(EmailController.class);
 

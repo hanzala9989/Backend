@@ -26,7 +26,7 @@ import com.example.eventOrganizer.Uitility.ResponseHandler;
 
 @RestController
 @ResponseBody
-@RequestMapping("event")
+@RequestMapping("/api/event")
 @CrossOrigin("*")
 public class EventController {
     private static Logger logger = LogManager.getLogger(EventController.class);

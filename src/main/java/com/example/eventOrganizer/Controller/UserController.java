@@ -32,7 +32,7 @@ import com.example.eventOrganizer.Uitility.ResponseHandler;
 
 @RestController
 @ResponseBody
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 @CrossOrigin("*")
 public class UserController {
     private static Logger logger = LogManager.getLogger(UserController.class);
@@ -89,29 +89,16 @@ public class UserController {
                 UserEntity userObject = userService.addUserService(userEntity);
                 if (userObject != null) {
                     LocalDateTime now = LocalDateTime.now();
-                    StringBuilder body = new StringBuilder();
-                    body.append("Dear " + userEntity.getUsername() + ",\n");
-                    body.append(
-                            "Thank you so much for signing up for XYZ! We're so excited to have you be a part of our community and we can't wait to see you at the event.\n");
-                    body.append("XYZ is a [insert brief description of event here]. It will be held on [" + now
-                            + "] at [time] at [location].\n");
-                    body.append(
-                            "In the meantime, please be sure to follow us on social media for updates about the event and to connect with other attendees:\n");
-                    body.append("We look forward to seeing you soon!\n");
-                    body.append("Sincerely,\n");
-                    body.append(userEntity.getUsername() + "\n");
-                    body.append("XYZ");
-
-                    String to = userEntity.getUserEmail();
+                    String to = userEntity.getUserEmail().trim();
                     String subject = "Welcome to XYZ! Your application is ready";
-                    emailService.sendEmail(to, subject, body.toString());
+                    emailService.sendRegistrationEmail(to, subject ,userEntity.getUsername(), now.toString(), "Our Good Neighbour");
                 }
                 logger.info("UserController :: END :: AddUser() ::" + userObject);
                 return ResponseEntity.ok(new ResponseHandler("200", "User Added Successfully"));
             }
             return null;
         } catch (Exception ex) {
-            logger.error("Exception in UserController :: FAILED :: AddUser() :: Internal Server Error ");
+            logger.error("Exception in UserController :: FAILED :: AddUser() :: Internal Server Error "+ ex);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseHandler("500", "Error Adding User: " + ex.getMessage()));
         }

@@ -1,6 +1,8 @@
 package com.example.eventOrganizer.DAOImpl;
 
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -260,11 +262,12 @@ public class RewardDAOImpl implements RewardDAO {
             queryBuilder.append("FROM RankedUsers ru ");
             queryBuilder.append("JOIN RewardsWithRank r ON ru.calculated_rank = r.reward_rank;");
 
-
             String queryString = queryBuilder.toString();
+            System.out.println(queryBuilder.toString());
+            logger.info("getLeaderBoardDetailDAO() :: GETALL :: Query :: ", queryBuilder.toString()); // Use {} to
+                                                                                                      // format the log
 
             query = em.createNativeQuery(queryString, LeaderBoardEntity.class);
-            logger.info("getLeaderBoardDetailDAO() :: GETALL :: Query :: ", queryString); // Use {} to format the log
             return query.getResultList();
         } catch (NullPointerException e) {
             // Handle a specific NullPointerException if it occurs
@@ -277,47 +280,70 @@ public class RewardDAOImpl implements RewardDAO {
         }
     }
 
+    private static int getYearFromDate(Date date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+        return Integer.parseInt(dateFormat.format(date));
+    }
+
     @Override
     @Transactional
     public boolean saveLeaderBoardHistory() {
-        StringBuilder sql = new StringBuilder();
-        StringBuilder insert_sql = new StringBuilder();
+        StringBuilder queryBuilder = new StringBuilder();
         logger.info("RewardDAOImpl :: saveLeaderBoardHistory() :: START :: ");
         try {
-            sql.append("CREATE TEMPORARY TABLE TempLeaderBoard AS ");
-            sql.append("WITH RankedUsers AS ( ");
-            sql.append("    SELECT u.user_id, u.user_name, u.total_reward_point, ");
-            sql.append("           RANK() OVER (ORDER BY u.total_reward_point DESC) AS calculated_rank ");
-            sql.append("    FROM users u ");
-            sql.append("), ");
-            sql.append("RewardsWithRank AS ( ");
-            sql.append("    SELECT r.rewards_id, r.rewards_name, ");
-            sql.append("           ROW_NUMBER() OVER (ORDER BY r.rewards_id) AS reward_rank ");
-            sql.append("    FROM rewards r ");
-            sql.append(") ");
-            sql.append(
-                    "SELECT ru.calculated_rank, ru.user_name, r.rewards_id, r.rewards_name, ru.total_reward_point, ");
-            sql.append("       CASE WHEN '2023-11-24' >= CURRENT_DATE THEN 'Active' ELSE 'Expired' END AS STATUS ");
-            sql.append("FROM RankedUsers ru ");
-            sql.append("JOIN RewardsWithRank r ON ru.calculated_rank = r.reward_rank; ");
+            // Set the target year
+            int targetYear = getYearFromDate(new Date());
 
-            insert_sql.append(
-                    "INSERT INTO leader_board (calculated_rank, user_name, rewards_id, rewards_name, total_reward_point, STATUS) ");
-            insert_sql
-                    .append("SELECT calculated_rank, user_name, rewards_id, rewards_name, total_reward_point, STATUS ");
-            insert_sql.append("FROM TempLeaderBoard ");
-            insert_sql.append("ON DUPLICATE KEY UPDATE ");
-            insert_sql.append("    total_reward_point = VALUES(total_reward_point), STATUS = VALUES(STATUS); ");
+            // Create a temporary table to hold the data
+            queryBuilder.append("CREATE TEMPORARY TABLE TempLeaderBoard AS ")
+                    .append("WITH RankedUsers AS (")
+                    .append("    SELECT u.user_id, u.user_name, u.total_reward_point,")
+                    .append("           RANK() OVER (ORDER BY u.total_reward_point DESC) AS calculated_rank")
+                    .append("    FROM users u")
+                    .append("),")
+                    .append("RewardsWithRank AS (")
+                    .append("    SELECT r.rewards_id, r.rewards_name,")
+                    .append("           ROW_NUMBER() OVER (ORDER BY r.rewards_id) AS reward_rank")
+                    .append("    FROM rewards r")
+                    .append(")")
+                    .append("SELECT ru.calculated_rank, ru.user_name, r.rewards_id, r.rewards_name, ru.total_reward_point,")
+                    .append("       CASE")
+                    .append("        WHEN CURRENT_DATE = '").append(targetYear).append("-08-16' THEN 'Expired'")
+                    .append("        WHEN CURRENT_DATE = '").append(targetYear + 1).append("-08-16' THEN 'Expired'")
+                    .append("        WHEN CURRENT_DATE = '").append(targetYear + 1).append("-02-01' THEN 'Expired'")
+                    .append("        WHEN CURRENT_DATE = '").append(targetYear + 1).append("-05-16' THEN 'Expired'")
+                    .append("       ELSE 'Active' END AS STATUS,")
+                    .append("       CASE")
+                    .append("        WHEN CURRENT_DATE BETWEEN '").append(targetYear).append("-06-01' AND '")
+                    .append(targetYear).append("-08-15' THEN 'Summer'")
+                    .append("        WHEN CURRENT_DATE BETWEEN '").append(targetYear).append("-08-16' AND '")
+                    .append(targetYear + 1).append("-12-15' THEN 'Fall'")
+                    .append("        WHEN CURRENT_DATE BETWEEN '").append(targetYear + 1).append("-12-16' AND '")
+                    .append(targetYear + 1).append("-01-31' THEN 'Winter'")
+                    .append("        WHEN CURRENT_DATE BETWEEN '").append(targetYear + 1).append("-02-01' AND '")
+                    .append(targetYear + 1).append("-05-15' THEN 'Spring'")
+                    .append("        WHEN CURRENT_DATE > '").append(targetYear + 1).append("-05-15' THEN 'Summer'")
+                    .append("       END AS SEASON")
+                    .append("FROM RankedUsers ru")
+                    .append("JOIN RewardsWithRank r ON ru.calculated_rank = r.reward_rank;");
 
-            // insert_sql.append("DROP TEMPORARY TABLE IF EXISTS TempLeaderBoard; ");
+            // Update and insert data into the leader_board table
+            queryBuilder.append(
+                    "INSERT INTO leader_board (calculated_rank, user_name, rewards_id, rewards_name, total_reward_point, STATUS, SEASON)")
+                    .append("SELECT calculated_rank, user_name, rewards_id, rewards_name, total_reward_point, STATUS, SEASON")
+                    .append("FROM TempLeaderBoard")
+                    .append("ON DUPLICATE KEY UPDATE")
+                    .append("    total_reward_point = VALUES(total_reward_point), STATUS = VALUES(STATUS), SEASON = VALUES(SEASON);");
 
-            String sqlString = sql.toString();
-            String insert_sqlString = insert_sql.toString();
-            System.out.println(sqlString);
-            System.out.println(insert_sqlString);
+            // Drop the temporary table
+            queryBuilder.append("DROP TEMPORARY TABLE IF EXISTS TempLeaderBoard;");
+
+            // Print the final query
+            System.out.println(queryBuilder.toString());
+            String sqlString = queryBuilder.toString();
             logger.info("RewardDAOImpl :: saveLeaderBoardHistory() :: Query :: " + sqlString);
-            em.createNativeQuery(sqlString).executeUpdate();
-            em.createNativeQuery(insert_sqlString).executeUpdate();
+            // em.createNativeQuery(sqlString).executeUpdate();
+            em.createQuery(sqlString);
             logger.info("RewardDAOImpl :: saveLeaderBoardHistory() :: Successfully Pass Record To leader_board :: "
                     + sqlString);
             return true;
