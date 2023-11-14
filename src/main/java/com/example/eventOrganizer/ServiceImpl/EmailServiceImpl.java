@@ -47,7 +47,7 @@ public class EmailServiceImpl {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
         helper.setTo(to);
-        helper.setSubject("Registration Confirmation for XYZ Event");
+        helper.setSubject("Registration Confirmation for Our Good Neighbour !");
 
         String htmlContent = generateRegistrationEmailContent(username, RegisterDate, organizerName);
         helper.setText(htmlContent, true);
