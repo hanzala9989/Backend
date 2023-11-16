@@ -162,7 +162,8 @@ public class ContactDAOImpl implements ContactDAO {
         Query query = null;
         StringBuilder builder = new StringBuilder();
         try {
-            builder.append("select * from contact_master LIMIT " + pageSize + " OFFSET " + firstResult);
+            builder.append("select * from contact_master;");
+            // builder.append("select * from contact_master LIMIT " + pageSize + " OFFSET " + firstResult);
             query = em.createNativeQuery(builder.toString(), ContactEntity.class);
             logger.info("ContactEntity :: GETALL :: {}", builder.toString());
             return query.getResultList();

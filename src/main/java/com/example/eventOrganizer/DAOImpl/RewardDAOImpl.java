@@ -163,7 +163,9 @@ public class RewardDAOImpl implements RewardDAO {
         Query query = null;
         StringBuilder builder = new StringBuilder();
         try {
-            builder.append("select * from rewards LIMIT " + pageSize + " OFFSET " + firstResult);
+            builder.append("select * from rewards;");
+            // builder.append("select * from rewards LIMIT " + pageSize + " OFFSET " +
+            // firstResult);
             query = em.createNativeQuery(builder.toString(), RewardEntity.class);
             logger.info("getAllReward() :: GETALL :: Query :: ", builder.toString()); // Use {} to format the log
                                                                                       // message
@@ -251,7 +253,8 @@ public class RewardDAOImpl implements RewardDAO {
             queryBuilder.append("    u.user_id, ");
             queryBuilder.append("    u.user_name, ");
             queryBuilder.append("    u.total_reward_point, ");
-            queryBuilder.append("    RANK() OVER (ORDER BY u.total_reward_point DESC, u.user_name) AS calculated_rank ");
+            queryBuilder
+                    .append("    RANK() OVER (ORDER BY u.total_reward_point DESC, u.user_name) AS calculated_rank ");
             queryBuilder.append("  FROM users u ");
             queryBuilder.append("  WHERE u.role_name = 'Volunteer' ");
             queryBuilder.append("    AND u.total_reward_point <> 0 ");
@@ -275,10 +278,9 @@ public class RewardDAOImpl implements RewardDAO {
             queryBuilder.append("  END AS STATUS ");
             queryBuilder.append("FROM RankedUsers ru ");
             queryBuilder.append("JOIN RewardsWithRank r ON ru.calculated_rank = r.reward_rank");
-            
+
             String queryString = queryBuilder.toString();
             System.out.println(queryString);
-            
 
             System.out.println(queryBuilder.toString());
             logger.info("getLeaderBoardDetailDAO() :: GETALL :: Query :: ", queryBuilder.toString()); // Use {} to
@@ -353,7 +355,7 @@ public class RewardDAOImpl implements RewardDAO {
             return false;
         }
     }
-   
+
     @Override
     public List<RewardHistory> getAllRewardHistory() {
         Query query = null;
@@ -361,7 +363,7 @@ public class RewardDAOImpl implements RewardDAO {
         try {
             builder.append("select * from leader_board;");
             query = em.createNativeQuery(builder.toString(), RewardHistory.class);
-            logger.info("getAllReward() :: GETALL :: Query :: ", builder.toString()); 
+            logger.info("getAllReward() :: GETALL :: Query :: ", builder.toString());
             return query.getResultList();
         } catch (NullPointerException e) {
             // Handle a specific NullPointerException if it occurs

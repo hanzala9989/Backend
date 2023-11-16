@@ -152,7 +152,8 @@ public class RoleDAOImpl implements RoleDAO {
         Query query = null;
         StringBuilder builder = new StringBuilder();
         try {
-            builder.append("select * from roles LIMIT " + pageSize + " OFFSET " + firstResult);
+            builder.append("select * from roles;");
+            // builder.append("select * from roles LIMIT " + pageSize + " OFFSET " + firstResult);
             logger.info("roles :: GETALL :: {}", builder); // Use {} to format the log message
             query = em.createNativeQuery(builder.toString(), RoleEntity.class);
             return query.getResultList();

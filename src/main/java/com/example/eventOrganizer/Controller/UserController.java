@@ -86,19 +86,26 @@ public class UserController {
                 System.out.println("Encoded Password: " + encodedPassword);
                 userEntity.setUserPassword(encodedPassword);
                 logger.info("UserController :: PROCESS :: AddUser() ::");
-                UserEntity userObject = userService.addUserService(userEntity);
-                if (userObject != null) {
-                    LocalDateTime now = LocalDateTime.now();
-                    String to = userEntity.getUserEmail().trim();
-                    String subject = "Welcome to XYZ! Your application is ready";
-                    emailService.sendRegistrationEmail(to, subject ,userEntity.getUsername(), now.toString(), "Our Good Neighbour");
+                System.out.println(userService.isEmailUnique(userEntity.getUserEmail()));
+                if (userService.isEmailUnique(userEntity.getUserEmail())) {
+                    logger.info("UserController :: END :: AddUser() :: Email is already taken !" );
+                    return ResponseEntity.ok(new ResponseHandler("500", "Email is already taken !"));
+                }else{
+                    UserEntity userObject = userService.addUserService(userEntity);
+                    if (userObject != null) {
+                        LocalDateTime now = LocalDateTime.now();
+                        String to = userEntity.getUserEmail().trim();
+                        String subject = "Welcome To Our Good Neighbour! Your Application is Ready";
+                        // emailService.sendRegistrationEmail(to, subject, userEntity.getUsername(), now.toString(),
+                        //         "Our Good Neighbour");
+                        logger.info("UserController :: END :: AddUser() ::" + userObject);
+                        return ResponseEntity.ok(new ResponseHandler("200", "User Added Successfully"));
+                    }
                 }
-                logger.info("UserController :: END :: AddUser() ::" + userObject);
-                return ResponseEntity.ok(new ResponseHandler("200", "User Added Successfully"));
             }
-            return null;
+           return ResponseEntity.ok(new ResponseHandler("500", "Something Went Wrong. We Will Get Back To You !"));
         } catch (Exception ex) {
-            logger.error("Exception in UserController :: FAILED :: AddUser() :: Internal Server Error "+ ex);
+            logger.error("Exception in UserController :: FAILED :: AddUser() :: Internal Server Error " + ex);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(new ResponseHandler("500", "Error Adding User: " + ex.getMessage()));
         }
@@ -197,7 +204,11 @@ public class UserController {
             logger.info("UserController :: PROCESS :: assignEventToUser()");
             String userObject = userService.assignEventToUser(userID, eventID);
             logger.info("UserController :: END :: assignEventToUser()");
-            return ResponseEntity.ok(new ResponseHandler("200", userObject));
+            if (userObject.equals("The Volunteer Limit For This Event Has Been Exceeded !")) {
+                return ResponseEntity.ok(new ResponseHandler("500", userObject));
+            } else {
+                return ResponseEntity.ok(new ResponseHandler("200", userObject));
+            }
             // handle the exception hanzala
         } catch (Exception ex) {
             logger.error(

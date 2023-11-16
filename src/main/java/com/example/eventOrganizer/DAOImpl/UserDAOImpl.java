@@ -163,7 +163,9 @@ public class UserDAOImpl implements UserDAO {
         Query query = null;
         StringBuilder builder = new StringBuilder();
         try {
-            builder.append("select * from users LIMIT " + pageSize + " OFFSET " + firstResult);
+            builder.append("select * from users;");
+            // builder.append("select * from users LIMIT " + pageSize + " OFFSET " +
+            // firstResult);
             logger.info("users :: GETALL :: {}", builder); // Use {} to format the log message
             query = em.createNativeQuery(builder.toString(), UserEntity.class);
             return query.getResultList();

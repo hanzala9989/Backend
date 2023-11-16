@@ -23,5 +23,5 @@ public interface UserService {
 
     public String assignEventToUser(Long userID, Long eventID);
 
-
+    public boolean isEmailUnique(String email);
 }

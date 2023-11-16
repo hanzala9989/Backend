@@ -22,21 +22,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDAO userDAO;
 
-    // @Autowired
-    // private UserRepository userRepository;
-
-    // public List<UserEntity> getAllUsers() {
-    //     return userRepository.findAll();
-    // }
-
-    // public UserEntity saveUser(UserEntity user) {
-    //     return userRepository.save(user);
-    // }
-
     @Override
     @Transactional
     public UserEntity addUserService(UserEntity userEntity) {
-        // userRepository.save(userEntity);
         return userDAO.addUser(userEntity);
     }
 
@@ -80,6 +68,19 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public String assignEventToUser(Long userID, Long eventID) {
         return userDAO.assignUserToEvents(userID, eventID);
+    }
+
+    public boolean isEmailUnique(String email) {
+        List<UserEntity> userList = userDAO.getAllUser(10, 1);
+
+        for (UserEntity user : userList) {
+            System.out.println(email + " ::: " + user.getUserEmail());
+            if (user.getUserEmail().equals(email)) {
+                System.out.println(email + " ::: " + user.getUserEmail());
+                return true;
+            }
+        }
+        return false;
     }
 
 }
