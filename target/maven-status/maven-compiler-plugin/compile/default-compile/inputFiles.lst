@@ -15,6 +15,7 @@ e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\event
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\RewardController.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\JwtRequestFilter.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\ContactEntity.java
+e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\MongoDBDAO\UserRepository.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\RoleDAO.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Uitility\GlobalExceptionHandler.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\ContactServiceImpl.java
@@ -37,6 +38,7 @@ e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\event
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\JwtRequest.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\LoactionServiceImpl.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\UserEntity.java
+e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\TestService.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\UserServiceImpl.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\LocationDAOImpl.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Uitility\OTPGenerator.java
@@ -52,6 +54,7 @@ e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\event
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\UserService.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\RoleServiceImpl.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\EventOrganizerApplication.java
+e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\MongoDBEntity\User.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\ContactService.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\LoactionService.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\UserAssignedEventService.java
@@ -60,3 +63,4 @@ e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\event
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\SecurityConfig.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\EventServiceImpl.java
 e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\UserDAOImpl.java
+e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\RewardHistory.java

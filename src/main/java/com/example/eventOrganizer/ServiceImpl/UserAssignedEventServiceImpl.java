@@ -36,7 +36,6 @@ public class UserAssignedEventServiceImpl implements UserAssignedEventService {
     @Override
     public List<UserEntity> getEventsByID(Long eventID) {
         List<UserAssignedEvent> list = userAssignedEventDAO.findUserEventsByEventId(eventID);
-        System.out.println("list :: " + list);
         List<Long> userIDs = new ArrayList<Long>();
         if (userIDs.isEmpty()) {
             for (UserAssignedEvent node : list) {
@@ -76,6 +75,7 @@ public class UserAssignedEventServiceImpl implements UserAssignedEventService {
     void addPointReward(Long userID) {
         logger.info("UserAssignedEventServiceImpl :: START :: addPointReward() ::");
         userDAO.addPointRewardToUser(userID);
+        logger.info("UserAssignedEventServiceImpl :: END :: addPointReward() ::");
     }
 
 }

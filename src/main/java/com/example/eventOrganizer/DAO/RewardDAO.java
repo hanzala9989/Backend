@@ -3,6 +3,7 @@ package com.example.eventOrganizer.DAO;
 import java.util.List;
 
 import com.example.eventOrganizer.Entity.RewardEntity;
+import com.example.eventOrganizer.Entity.RewardHistory;
 import com.example.eventOrganizer.ModelDTO.LeaderBoardModel;
 
 public interface RewardDAO {
@@ -21,5 +22,7 @@ public interface RewardDAO {
     public List<LeaderBoardModel> getLeaderBoardDetailDAO();
 
     public boolean saveLeaderBoardHistory();
+    
+    public List<RewardHistory> getAllRewardHistory();
 
 }

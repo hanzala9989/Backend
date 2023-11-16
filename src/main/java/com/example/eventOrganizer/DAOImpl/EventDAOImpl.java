@@ -145,7 +145,8 @@ public class EventDAOImpl implements EventDAO {
         Query query = null;
         StringBuilder builder = new StringBuilder();
         try {
-            builder.append("select * from events LIMIT " + pageSize + " OFFSET " + firstResult);
+            builder.append("select * from events;");
+            // builder.append("select * from events LIMIT " + pageSize + " OFFSET " + firstResult);
             query = em.createNativeQuery(builder.toString(), EventEntity.class);
             logger.info("EventEntity :: GETALL :: {}", builder.toString());
             return query.getResultList();

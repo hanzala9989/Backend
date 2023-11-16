@@ -3,6 +3,7 @@ package com.example.eventOrganizer.Service;
 import java.util.List;
 
 import com.example.eventOrganizer.Entity.RewardEntity;
+import com.example.eventOrganizer.Entity.RewardHistory;
 import com.example.eventOrganizer.ModelDTO.LeaderBoardModel;
 
 public interface RewardService {
@@ -21,5 +22,7 @@ public interface RewardService {
     public List<LeaderBoardModel> getLeaderBoardDetailService();
 
     public void saveLeaderBoardHistoryService();
+    
+    public List<RewardHistory> getAllRewardHistory();
 
 }

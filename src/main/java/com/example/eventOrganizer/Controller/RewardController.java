@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.eventOrganizer.Entity.RewardEntity;
+import com.example.eventOrganizer.Entity.RewardHistory;
 import com.example.eventOrganizer.ModelDTO.LeaderBoardModel;
 import com.example.eventOrganizer.Service.RewardService;
 import com.example.eventOrganizer.Uitility.ResponseHandler;
@@ -149,6 +150,19 @@ public class RewardController {
                     "Exception in RewardController :: FAILED :: GetLeaderBoardDetails() :: leaderboard error");
             return ResponseEntity
                     .ok(new ResponseHandler("500", "No Event Register", List.of()));
+        }
+    }
+
+    @GetMapping("/getAllRewardHistory")
+    public ResponseHandler getAllRewardHistory() {
+        logger.info("RewardController :: START :: getAllRewardHistory() ::");
+        try {
+            logger.info("RewardController :: PROCESS :: getAllRewardHistory() :: Success");
+            List<RewardHistory> rewardsList = rewardService.getAllRewardHistory();
+            return new ResponseHandler("200", "Success", List.of(rewardsList));
+        } catch (Exception ex) {
+            logger.error("Exception in RewardController :: FAILED :: getAllRewardHistory() :: Data Not Found");
+            return new ResponseHandler("500", "Data Not Found", List.of());
         }
     }
 }

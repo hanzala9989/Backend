@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.eventOrganizer.DAO.RewardDAO;
 import com.example.eventOrganizer.Entity.RewardEntity;
+import com.example.eventOrganizer.Entity.RewardHistory;
 import com.example.eventOrganizer.ModelDTO.LeaderBoardModel;
 import com.example.eventOrganizer.Service.RewardService;
 
@@ -69,6 +70,11 @@ public class RewardServiceImpl implements RewardService {
         } else {
             System.out.println("this mounth we can not excute the query. Sorry inconvience!!");
         }
+    }
+
+    @Override
+    public List<RewardHistory> getAllRewardHistory() {
+        return rewardDAO.getAllRewardHistory();
     }
 
 }
