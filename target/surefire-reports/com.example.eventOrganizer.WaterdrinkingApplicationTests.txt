@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.example.eventOrganizer.WaterdrinkingApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.309 s - in com.example.eventOrganizer.WaterdrinkingApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 10.239 s - in com.example.eventOrganizer.WaterdrinkingApplicationTests

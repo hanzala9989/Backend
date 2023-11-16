@@ -270,7 +270,7 @@ public class RewardDAOImpl implements RewardDAO {
             queryBuilder.append("  r.rewards_name, ");
             queryBuilder.append("  ru.total_reward_point, ");
             queryBuilder.append("  CASE ");
-            queryBuilder.append("    WHEN '2023-11-24' >= CURRENT_DATE THEN 'Active' ");
+            queryBuilder.append("    WHEN '2030-11-24' >= CURRENT_DATE THEN 'Active' ");
             queryBuilder.append("    ELSE 'Expired' ");
             queryBuilder.append("  END AS STATUS ");
             queryBuilder.append("FROM RankedUsers ru ");
@@ -361,8 +361,7 @@ public class RewardDAOImpl implements RewardDAO {
         try {
             builder.append("select * from leader_board;");
             query = em.createNativeQuery(builder.toString(), RewardHistory.class);
-            logger.info("getAllReward() :: GETALL :: Query :: ", builder.toString()); // Use {} to format the log
-                                                                                      // message
+            logger.info("getAllReward() :: GETALL :: Query :: ", builder.toString()); 
             return query.getResultList();
         } catch (NullPointerException e) {
             // Handle a specific NullPointerException if it occurs

@@ -13,6 +13,7 @@ public class UserAssignedEvent {
     @Id
     @Column(name = "user_id")
     private Long userID;
+    
     @Column(name = "event_id")
     private Long eventID;
 
