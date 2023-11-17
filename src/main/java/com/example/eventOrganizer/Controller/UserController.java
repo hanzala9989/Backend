@@ -96,8 +96,8 @@ public class UserController {
                         LocalDateTime now = LocalDateTime.now();
                         String to = userEntity.getUserEmail().trim();
                         String subject = "Welcome To Our Good Neighbour! Your Application is Ready";
-                        // emailService.sendRegistrationEmail(to, subject, userEntity.getUsername(), now.toString(),
-                        //         "Our Good Neighbour");
+                        emailService.sendRegistrationEmail(to, subject, userEntity.getUsername(), now.toString(),
+                                "Our Good Neighbour");
                         logger.info("UserController :: END :: AddUser() ::" + userObject);
                         return ResponseEntity.ok(new ResponseHandler("200", "User Added Successfully"));
                     }
