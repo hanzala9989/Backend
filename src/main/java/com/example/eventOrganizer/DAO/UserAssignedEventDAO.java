@@ -11,8 +11,12 @@ public interface UserAssignedEventDAO {
 
     public List<UserEntity> findUsersByUserIds(List<Long> userIds);
 
+    public List<UserAssignedEvent> findUsersByUserID(Long userID);
+
     public boolean deleteUserFromEvent(Long userID, Long eventID);
-    
+
+    public boolean deleteUserAllAssignedEvent(Long userID);
+
     public UserAssignedEvent processUserFromEvent(UserAssignedEvent userAssignedEventEntity);
 
 }

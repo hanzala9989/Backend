@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.eventOrganizer.DAO.UserAssignedEventDAO;
 import com.example.eventOrganizer.DAO.UserDAO;
 import com.example.eventOrganizer.Entity.UserEntity;
 import com.example.eventOrganizer.ModelDTO.LoginModel;
-import com.example.eventOrganizer.MongoDBDAO.UserRepository;
 import com.example.eventOrganizer.Service.UserService;
 
 @Service
@@ -21,6 +21,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserDAO userDAO;
+
+    @Autowired
+    UserAssignedEventDAO userAssignedEventDAO;
 
     @Override
     @Transactional
@@ -40,6 +43,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean deleteUserService(Long userID) {
+        userAssignedEventDAO.deleteUserAllAssignedEvent(userID);
         return userDAO.deleteUser(userID);
     }
 

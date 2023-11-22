@@ -2,6 +2,7 @@ package com.example.eventOrganizer.ServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,9 +50,17 @@ public class UserAssignedEventServiceImpl implements UserAssignedEventService {
     }
 
     @Override
+    public List<UserAssignedEvent> getAllUserAssignedList(Long userID) {
+        List<UserAssignedEvent> listofAssignedUser = userAssignedEventDAO.findUsersByUserID(userID);
+
+        return listofAssignedUser;
+    }
+
+    @Override
     public List<UserAssignedEvent> getAllUserEventsByID(Long eventID) {
-        List<UserAssignedEvent> list = userAssignedEventDAO.findUserEventsByEventId(eventID);
-        return list;
+        List<UserAssignedEvent> userAssignedEvent = userAssignedEventDAO.findUserEventsByEventId(eventID);
+
+        return userAssignedEvent;
     }
 
     @Override

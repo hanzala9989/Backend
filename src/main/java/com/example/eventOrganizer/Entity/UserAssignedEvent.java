@@ -13,9 +13,12 @@ public class UserAssignedEvent {
     @Id
     @Column(name = "user_id")
     private Long userID;
-    
+
     @Column(name = "event_id")
     private Long eventID;
+
+    @Column(name = "event_assigned_id")
+    private Long eventAssignedID;
 
     @Column(name = "user_attendend")
     private Boolean attendend;
@@ -69,4 +72,14 @@ public class UserAssignedEvent {
     public Long isStatus() {
         return status;
     }
+
+    public Long getEventAssignedID() {
+        return eventAssignedID;
+    }
+
+    public void setEventAssignedID(Long eventAssignedID) {
+        this.eventAssignedID = eventAssignedID;
+    }
+
+    
 }

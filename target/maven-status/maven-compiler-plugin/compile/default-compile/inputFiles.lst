@@ -1,66 +1,66 @@
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\RewardModel.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\LocationEntity.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\UserAssignedEvent.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\UserModel.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\EmailServiceImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Scheduler\SendEventNotifications.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\UserController.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\UserAssignedEventServiceImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\EventService.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\ContactDAO.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\EventDAOImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\RoleController.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\UserAssignedEventDAOImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\RewardService.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\RewardController.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\JwtRequestFilter.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\ContactEntity.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\MongoDBDAO\UserRepository.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\RoleDAO.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Uitility\GlobalExceptionHandler.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\ContactServiceImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\LoginModel.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\RewardDAO.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\RoleModel.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\RewardServiceImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\JwtResponse.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\JwtAuthenticationEntryPoint.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\EmailController.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Uitility\AttendanceStatus.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Uitility\ResponseHandler.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\AuthenticationController.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\RewardEntity.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\RewardDAOImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\RoleEntity.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\ContactController.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\EventDAO.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\EventEntity.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\JwtRequest.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\LoactionServiceImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\UserEntity.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\TestService.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\UserServiceImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\LocationDAOImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Uitility\OTPGenerator.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\UserDAO.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\RoleDAOImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\RoleService.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\ContactDAOImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\UserDetailsService.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\JwtTokenHelper.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\UserAssignedEventDAO.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\EventController.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\LeaderBoardModel.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\UserService.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\RoleServiceImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\EventOrganizerApplication.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\MongoDBEntity\User.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\ContactService.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\LoactionService.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\UserAssignedEventService.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\LeaderBoardEntity.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\LocationDAO.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\SecurityConfig.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\EventServiceImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\UserDAOImpl.java
-e:\Hanzala Dta\MyProject\show\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\RewardHistory.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\LoginModel.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\RewardServiceImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Scheduler\SendEventNotifications.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\UserAssignedEvent.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\JwtRequest.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\UserEntity.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\EventEntity.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\EventController.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\LocationDAOImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\RoleEntity.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\MongoDBEntity\User.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\EmailServiceImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Uitility\OTPGenerator.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\ContactDAO.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\TestService.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\ContactController.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\EventService.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\RewardService.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\EventServiceImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\EventDAOImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\UserAssignedEventDAOImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\RoleService.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\UserAssignedEventService.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Uitility\AttendanceStatus.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\ContactDAOImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\JwtAuthenticationEntryPoint.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\JwtResponse.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\ContactService.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\UserService.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\RewardDAOImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\LeaderBoardEntity.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\EmailController.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\RoleDAOImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Service\LoactionService.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\LeaderBoardModel.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\UserController.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAOImpl\UserDAOImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\LocationEntity.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\UserServiceImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\UserAssignedEventDAO.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\MongoDBDAO\UserRepository.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\LocationDAO.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\RoleController.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\RewardEntity.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\RoleServiceImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\RewardDAO.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\RewardController.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\UserModel.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\JwtRequestFilter.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\JwtTokenHelper.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\UserAssignedEventServiceImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\ContactEntity.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\EventOrganizerApplication.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\UserDetailsService.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\RoleDAO.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\ContactServiceImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\EventDAO.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Entity\RewardHistory.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\DAO\UserDAO.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\RoleModel.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Uitility\GlobalExceptionHandler.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ModelDTO\RewardModel.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Uitility\ResponseHandler.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Security\SecurityConfig.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\ServiceImpl\LoactionServiceImpl.java
+e:\GIt\Good-Neighbour\src\main\java\com\example\eventOrganizer\Controller\AuthenticationController.java

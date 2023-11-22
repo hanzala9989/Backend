@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,6 +16,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.example.eventOrganizer.DAO.UserAssignedEventDAO;
+import com.example.eventOrganizer.Entity.RoleEntity;
 import com.example.eventOrganizer.Entity.UserAssignedEvent;
 import com.example.eventOrganizer.Entity.UserEntity;
 
@@ -40,7 +42,7 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
             logger.error("NullPointerException in UserAssignedEventDAOImpl :: findUserEventsByEventId()");
             throw e;
         } catch (Exception e) {
-            logger.error("Exception in UserAssignedEventDAOImpl :: findUserEventsByEventId()",e);
+            logger.error("Exception in UserAssignedEventDAOImpl :: findUserEventsByEventId()", e);
             return Collections.emptyList();
         }
     }
@@ -93,6 +95,41 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
         }
     }
 
+    @Override
+    @Transactional
+    public boolean deleteUserAllAssignedEvent(Long userID) {
+        logger.info("UserAssignedEventDAOImpl :: DELETE :: getUserFromEvent() :: userID :: " + userID);
+        StringBuilder queryBuilder = new StringBuilder();
+        try {
+            
+            // Decrement the number_of_user_register in the events table
+            queryBuilder.append("UPDATE EVENTS ")
+            .append("SET number_of_user_register = number_of_user_register - 1 ")
+            .append("WHERE event_id IN (SELECT event_id FROM user_event WHERE user_id = ")
+            .append(userID)
+            .append("); ");
+            String finalQuery = queryBuilder.toString();
+            em.createNativeQuery(finalQuery).executeUpdate();
+            
+            // Delete records in user_event table
+            String queryString = "DELETE FROM user_event WHERE user_id = " + userID; 
+            em.createNativeQuery(queryString).executeUpdate();
+        
+
+            return true;
+
+        } catch (NoResultException nre) {
+            logger.info("NoResultException in UserAssignedEventDAOImpl :: deleteUserFromEvent() ::");
+            throw nre;// Handle the case where no results are found
+        } catch (NullPointerException npe) {
+            logger.error("NullPointerException in UserAssignedEventDAOImpl :: deleteUserFromEvent() ::");
+            throw npe; // Rethrow NullPointerException to indicate a critical error
+        } catch (Exception e) {
+            logger.error("Exception in UserAssignedEventDAOImpl :: deleteUserFromEvent() ::");
+            throw new RuntimeException("An error occurred while fetching Event");
+        }
+    }
+
     @Transactional
     public boolean getUserFromEvent(Long userID, Long eventID) {
         logger.info("UserAssignedEventDAOImpl :: GET :: :: getUserFromEvent() :: userID :: " + userID + ":: eventID ::"
@@ -118,7 +155,8 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
     }
 
     public UserAssignedEvent getUserFromEventObject(Long userID, Long eventID) {
-        logger.info("UserAssignedEventDAOImpl :: GET :: :: getUserFromEventObject() :: userID :: " + userID + ":: eventID ::"
+        logger.info("UserAssignedEventDAOImpl :: GET :: :: getUserFromEventObject() :: userID :: " + userID
+                + ":: eventID ::"
                 + eventID);
         try {
             String queryString = "SELECT * FROM user_event WHERE user_id = " + userID + " AND event_id = " + eventID;
@@ -188,6 +226,17 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
         }
     }
 
-    
+    @Override
+    public List<UserAssignedEvent> findUsersByUserID(Long userID) {
+        try {
+        String nativeQuery = "SELECT * FROM user_event WHERE user_id =" +userID;
+        Query query = em.createNativeQuery(nativeQuery, UserAssignedEvent.class);
+        System.out.println(nativeQuery);
+
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return null; // Handle the case where no user is found with the given ID
+        }
+    }
 
 }

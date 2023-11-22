@@ -254,6 +254,24 @@ public class UserController {
         }
     }
 
+    @GetMapping("/getAllUserAssignedList")
+    public ResponseEntity<ResponseHandler> getAllUserAssignedList(@RequestParam Long userID) {
+        logger.info("UserController :: START :: getAllUserAssignedList()");
+
+        try {
+            logger.info("UserController :: PROCESS :: getAllUserAssignedList()");
+            List<UserAssignedEvent> userAssignEventObject = userAssignedEventService.getAllUserAssignedList(userID);
+            logger.info("UserController :: END :: getAllUserAssignedList()");
+            return ResponseEntity.ok(new ResponseHandler("200", "Success", List.of(userAssignEventObject)));
+            // handle the exception hanzala
+        } catch (Exception ex) {
+            logger.error(
+                    "Exception in UserController :: FAILED :: getAllUserAssignedList() :: The volunteer limit for this event has been exceeded");
+            return ResponseEntity
+                    .ok(new ResponseHandler("500", "No User Register", List.of()));
+        }
+    }
+
     @DeleteMapping("/deleteUserFromEvent")
     public ResponseHandler DeleteUserFromEvent(@RequestParam Long userID, @RequestParam Long eventID) {
         logger.info("UserController :: START :: DeleteUserFromEvent() ::");

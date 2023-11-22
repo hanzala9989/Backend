@@ -14,4 +14,6 @@ public interface UserAssignedEventService {
 
     public UserAssignedEvent processUserFromEventService(UserAssignedEvent userAssignedEventEntity);
 
+    public List<UserAssignedEvent> getAllUserAssignedList(Long userID);
+
 }
