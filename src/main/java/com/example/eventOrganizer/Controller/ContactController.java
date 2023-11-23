@@ -56,7 +56,7 @@ public class ContactController {
         try {
             if (contactEntity != null) {
                 contactService.editContactService(contactEntity);
-                return ResponseEntity.ok(new ResponseHandler("200", "Contact Updated Successfully"));
+                return ResponseEntity.ok(new ResponseHandler("200", "Help History Updated Successfully"));
             }
             throw new NullPointerException("ContactEntity is NULL Exception");
         } catch (Exception ex) {

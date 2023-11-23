@@ -103,7 +103,7 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
         try {
             
             // Decrement the number_of_user_register in the events table
-            queryBuilder.append("UPDATE EVENTS ")
+            queryBuilder.append("UPDATE events ")
             .append("SET number_of_user_register = number_of_user_register - 1 ")
             .append("WHERE event_id IN (SELECT event_id FROM user_event WHERE user_id = ")
             .append(userID)
