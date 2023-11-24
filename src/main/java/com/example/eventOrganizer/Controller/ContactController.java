@@ -40,7 +40,7 @@ public class ContactController {
         try {
             if (contactEntity != null) {
                 contactService.addContactService(contactEntity);
-                return ResponseEntity.ok(new ResponseHandler("200", "Contact Add Successfully"));
+                return ResponseEntity.ok(new ResponseHandler("200", "Thank you. Our admins will get back to you as soon as we can."));
             }
             return null;
         } catch (Exception ex) {

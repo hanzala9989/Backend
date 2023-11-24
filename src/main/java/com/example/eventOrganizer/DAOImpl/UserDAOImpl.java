@@ -275,7 +275,7 @@ public class UserDAOImpl implements UserDAO {
             eventSet.add(event);
             user.setJoiningEventUser(eventSet);
             em.merge(user);
-            return "Registration Done successfully Please Wait For Approvel !";
+            return "Registration done successfully. Please wait for approval !";
         } else {
             return "The Volunteer Limit For This Event Has Been Exceeded !";
         }
