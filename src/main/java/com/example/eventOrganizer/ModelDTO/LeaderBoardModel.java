@@ -1,6 +1,9 @@
 package com.example.eventOrganizer.ModelDTO;
 
+import org.springframework.data.annotation.Id;
 public class LeaderBoardModel {
+    @Id
+    private Long id; // MongoDB document ID
     private Long rank;
     private String userName;
     private String rewardName;
