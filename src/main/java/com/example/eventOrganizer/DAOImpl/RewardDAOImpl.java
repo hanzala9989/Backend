@@ -1,8 +1,6 @@
 package com.example.eventOrganizer.DAOImpl;
 
-import java.text.SimpleDateFormat;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -376,4 +374,40 @@ public class RewardDAOImpl implements RewardDAO {
         }
     }
 
+    public List<RewardHistory> filterRewardsHistoryByAttributesDAO(RewardHistory filterParams) {
+        CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+        CriteriaQuery<RewardHistory> query = criteriaBuilder.createQuery(RewardHistory.class);
+        Root<RewardHistory> root = query.from(RewardHistory.class);
+
+        Predicate predicate = criteriaBuilder.conjunction(); // Initialize with "AND" operation
+
+        if (filterParams.getRewardID() != null) {
+            predicate = criteriaBuilder.and(predicate,
+                    criteriaBuilder.equal(root.get("rewardID"), filterParams.getRewardID()));
+        }
+
+        if (filterParams.getUsername() != null) {
+            predicate = criteriaBuilder.and(predicate,
+                    criteriaBuilder.equal(root.get("username"), filterParams.getUsername()));
+        }
+
+        if (filterParams.getRewardName() != null) {
+            predicate = criteriaBuilder.and(predicate,
+                    criteriaBuilder.equal(root.get("rewardName"), filterParams.getRewardName()));
+        }
+
+        if (filterParams.getTotalRewardPoint() != null) {
+            predicate = criteriaBuilder.and(predicate,
+                    criteriaBuilder.equal(root.get("totalRewardPoint"), filterParams.getTotalRewardPoint()));
+        }
+
+        if (filterParams.getSeason() != null) {
+            predicate = criteriaBuilder.and(predicate,
+                    criteriaBuilder.equal(root.get("season"), filterParams.getSeason()));
+        }
+        // Repeat the above pattern for other filter attributes
+        query.where(predicate);
+
+        return em.createQuery(query).getResultList();
+    }
 }

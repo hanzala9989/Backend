@@ -77,4 +77,9 @@ public class RewardServiceImpl implements RewardService {
         return rewardDAO.getAllRewardHistory();
     }
 
+    @Override
+    public List<RewardHistory> filterRewardsHistoryByAttributes(RewardHistory filterParams) {
+        return rewardDAO.filterRewardsHistoryByAttributesDAO(filterParams);
+    }
+
 }

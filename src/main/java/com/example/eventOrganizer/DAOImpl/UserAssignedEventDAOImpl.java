@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +15,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.example.eventOrganizer.DAO.UserAssignedEventDAO;
-import com.example.eventOrganizer.Entity.RoleEntity;
 import com.example.eventOrganizer.Entity.UserAssignedEvent;
 import com.example.eventOrganizer.Entity.UserEntity;
 
@@ -229,7 +227,7 @@ public class UserAssignedEventDAOImpl implements UserAssignedEventDAO {
     @Override
     public List<UserAssignedEvent> findUsersByUserID(Long userID) {
         try {
-        String nativeQuery = "SELECT * FROM user_event WHERE user_id =" +userID;
+        String nativeQuery = "SELECT * FROM user_event Where status = 0;";
         Query query = em.createNativeQuery(nativeQuery, UserAssignedEvent.class);
         System.out.println(nativeQuery);
 

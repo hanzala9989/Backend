@@ -22,7 +22,9 @@ public interface RewardDAO {
     public List<LeaderBoardModel> getLeaderBoardDetailDAO();
 
     public boolean saveLeaderBoardHistory();
-    
+
     public List<RewardHistory> getAllRewardHistory();
+
+    public List<RewardHistory> filterRewardsHistoryByAttributesDAO(RewardHistory filterParams);
 
 }

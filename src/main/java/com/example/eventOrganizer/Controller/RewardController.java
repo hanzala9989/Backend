@@ -165,4 +165,21 @@ public class RewardController {
             return new ResponseHandler("500", "Data Not Found", List.of());
         }
     }
+
+    @PostMapping("/filterRewardHistory")
+    public ResponseEntity<ResponseHandler> filterRewardHistory(@RequestBody RewardHistory filterDTO) {
+        try {
+            logger.info("RewardController :: PROCESS :: filterRewardHistory() :: Success");
+            List<RewardHistory> rewardHistoryList = rewardService.filterRewardsHistoryByAttributes(filterDTO);
+            if (rewardHistoryList.size() > 0) {
+                return ResponseEntity.ok(new ResponseHandler("200", "Success", List.of(rewardHistoryList)));
+            } else {
+                return ResponseEntity.ok(new ResponseHandler("500", "Data Not Found", List.of(rewardHistoryList)));
+            }
+        } catch (Exception ex) {
+            logger.error("Exception in RewardController :: FAILED :: filterRewardHistory() :: Data Not Found");
+            return ResponseEntity.ok(new ResponseHandler("500", "Data Not Found", List.of()));
+        }
+
+    }
 }

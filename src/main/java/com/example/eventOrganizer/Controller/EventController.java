@@ -40,7 +40,7 @@ public class EventController {
         try {
             if (eventEntity != null) {
                 eventService.addEventService(eventEntity);
-                return ResponseEntity.ok(new ResponseHandler("200", "Event Add Successfully"));
+                return ResponseEntity.ok(new ResponseHandler("200", "Event Added Successfully"));
             }
             return null;
         } catch (Exception ex) {

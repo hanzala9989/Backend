@@ -20,20 +20,25 @@ public class RewardHistory {
     private String totalRewardPoint;
     @Column(name = "season")
     private String season;
+    @Column(name = "Year")
+    private int year;
     @Column(name = "STATUS")
     private String status;
     public RewardHistory() {
     }
+
     public RewardHistory(Long rank, String username, String rewardID, String rewardName, String totalRewardPoint,
-            String season, String status) {
+            String season, int year, String status) {
         this.rank = rank;
         this.username = username;
         this.rewardID = rewardID;
         this.rewardName = rewardName;
         this.totalRewardPoint = totalRewardPoint;
         this.season = season;
+        this.year = year;
         this.status = status;
     }
+
     public Long getRank() {
         return rank;
     }
@@ -76,6 +81,15 @@ public class RewardHistory {
     public void setStatus(String status) {
         this.status = status;
     }
+    
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
     @Override
     public String toString() {
         return "RewardHistory [rank=" + rank + ", username=" + username + ", rewardID=" + rewardID + ", rewardName="

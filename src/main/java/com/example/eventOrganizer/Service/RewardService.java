@@ -25,4 +25,6 @@ public interface RewardService {
     
     public List<RewardHistory> getAllRewardHistory();
 
+    public List<RewardHistory> filterRewardsHistoryByAttributes(RewardHistory filterParams);
+
 }
