@@ -1,8 +1,4 @@
 package com.example.demo.demo.Controller;
-
-import java.io.File;
-import java.io.IOException;
-
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
@@ -12,11 +8,8 @@ import org.springframework.batch.core.repository.JobExecutionAlreadyRunningExcep
 import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
 import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 public class EntryPoint {
@@ -28,7 +21,7 @@ public class EntryPoint {
     private Job job;
 
 
-    @PostMapping("/importProduct")
+    @PostMapping("/importFile")
     public String importCsvToDBProductJob() {
         long startTime = System.currentTimeMillis();
         JobParameters jobParameters = new JobParametersBuilder()
@@ -38,8 +31,8 @@ public class EntryPoint {
             long endTime = System.currentTimeMillis();
             long executionTime = endTime - startTime;
             String executionTimeInMintue = formatExecutionTime(executionTime);
-            System.out.println("Execution time: " + executionTimeInMintue + " ms");
-            return "Execution time (MMM): " + executionTimeInMintue;
+            System.out.println("Execution time (MM : SS) :: " + executionTimeInMintue + " ms");
+            return "Execution time (MM : SS) :: " + executionTimeInMintue;
 
         } catch (JobExecutionAlreadyRunningException | JobRestartException | JobInstanceAlreadyCompleteException
                 | JobParametersInvalidException e) {
