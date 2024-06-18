@@ -45,7 +45,6 @@ public class SpringBatchCofig {
         if (csvFileName != null) {
             String resourceLocation = directoryPath + csvFileName;
             itemReader.setResource(new FileSystemResource(resourceLocation));
-            System.out.println("Resource set to: " + resourceLocation);
             itemReader.setName(csvFileName);
             itemReader.setLinesToSkip(1);
             itemReader.setLineMapper(lineMapper());
