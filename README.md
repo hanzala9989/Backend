@@ -11,7 +11,7 @@ Brief description of your project.
 ## Database Configuration
 
 - Database Name: demo
-- Table Name: customer_entity
+- Table Name: users
 
 ## Running the Project
 
@@ -21,6 +21,6 @@ Brief description of your project.
    ```bash
    git clone <repository_url>
    cd <project_directory>
-Hit this post api in postman
-   POST http://localhost:8080/importFile
+Hit this get api in postman
+   GET http://localhost:8080/importFile
 

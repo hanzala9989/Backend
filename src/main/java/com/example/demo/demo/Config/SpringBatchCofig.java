@@ -1,6 +1,10 @@
 package com.example.demo.demo.Config;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -26,7 +30,7 @@ import com.example.demo.demo.RepoImplementation.CustomerRepo;
 @Configuration
 @EnableBatchProcessing
 public class SpringBatchCofig {
-
+    private static final Logger logger = LoggerFactory.getLogger(SpringBatchCofig.class);
     @Autowired
     JobBuilderFactory jobBuilderFactory;
 
@@ -37,11 +41,12 @@ public class SpringBatchCofig {
     CustomerRepo customerRepo;
 
     @Bean
-    public FlatFileItemReader<CustomerEntity> reader() {
+    public FlatFileItemReader<CustomerEntity> reader() throws FileNotFoundException {
+        logger.info("SpringBatchCofig :: Initializing FlatFileItemReader !!!");
         FlatFileItemReader<CustomerEntity> itemReader = new FlatFileItemReader<>();
         String directoryPath = "src/main/resources/csvFile/";
         String csvFileName = findCsvFile(directoryPath);
-
+    
         if (csvFileName != null) {
             String resourceLocation = directoryPath + csvFileName;
             itemReader.setResource(new FileSystemResource(resourceLocation));
@@ -49,12 +54,12 @@ public class SpringBatchCofig {
             itemReader.setLinesToSkip(1);
             itemReader.setLineMapper(lineMapper());
         } else {
-            System.out.println("No CSV file found in directory: " + directoryPath);
+            logger.error("SpringBatchCofig :: No CSV file found in directory: " + directoryPath);
+            throw new FileNotFoundException("No CSV file found in directory: " + directoryPath);
         }
-
+    
         return itemReader;
     }
-
     public static String findCsvFile(String directoryPath) {
         File directory = new File(directoryPath);
         File[] files = directory.listFiles();
@@ -88,12 +93,13 @@ public class SpringBatchCofig {
 
     @Bean
     public CustomerPorcessor porcessor() {
+        logger.info("SpringBatchCofig :: Initializing CustomerProcessor !!!");
         return new CustomerPorcessor();
     }
 
     @Bean
     public RepositoryItemWriter<CustomerEntity> writer() {
-
+        logger.info("SpringBatchCofig :: Initializing RepositoryItemWriter !!!");
         RepositoryItemWriter<CustomerEntity> writer = new RepositoryItemWriter<>();
         writer.setRepository(customerRepo);
         writer.setMethodName("save");
@@ -103,16 +109,24 @@ public class SpringBatchCofig {
 
     @Bean
     public Step step1() {
-        return stepBuilderFactory.get("csv-step").<CustomerEntity, CustomerEntity>chunk(10)
-                .reader(reader())
-                .processor(porcessor())
-                .writer(writer())
-                .taskExecutor(taskExecutor())
-                .build();
+        try {
+            logger.info("SpringBatchCofig :: Initializing Step !!!");
+            return stepBuilderFactory.get("csv-step").<CustomerEntity, CustomerEntity>chunk(10)
+                    .reader(reader())
+                    .processor(porcessor())
+                    .writer(writer())
+                    .taskExecutor(taskExecutor())
+                    .build();
+        } catch (FileNotFoundException e) {
+            logger.error("SpringBatchCofig :: Error in Step initialization: ", e);
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Bean
     public Job runJob() {
+        logger.info("SpringBatchCofig :: Initializing Job !!!");
         return jobBuilderFactory.get("step1()").flow(step1()).end().build();
     }
 
